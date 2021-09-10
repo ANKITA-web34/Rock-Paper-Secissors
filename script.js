@@ -1,4 +1,23 @@
 
+const playerScoreEl = document.getElementById('playerScore');
+const PlayerChoiceEl = document.getElementById('playerChoice');
+const computerScore = document.getElementById('computerScore');
+const computerChoiceEl = document.getElementById('computerChoice');
+const resultText = document.getElementById('resultText');
+
+const playerRock = document.getElementById('playerRock');
+const playerPaper = document.getElementById('playerPaper');
+const playerScissors = document.getElementById('playerScissors');
+const playerLizard = document.getElementById('playerLizard');
+const playerSpock = document.getElementById('playerSpock');
+
+const computerRock = document.getElementById('computerRock');
+const computerPaper = document.getElementById('computerPaper');
+const computerScissors = document.getElementById('computerScissors');
+const computerLizard = document.getElementById('computerLizard');
+const computerSpock = document.getElementById('computerSpock');
+
+const allGameIcons = document.querySelectorAll('.far');
 
 const choices = {
   rock: { name: 'Rock', defeats: ['scissors', 'lizard'] },
@@ -7,4 +26,43 @@ const choices = {
   lizard: { name: 'Lizard', defeats: ['paper', 'spock'] },
   spock: { name: 'Spock', defeats: ['scissors', 'rock'] },
 };
+
+
+//Selected icons
+function resetSelected() {
+ allGameIcons.forEach((icon) => {
+    icon.classList.remove('selected');
+ });
+}
+
+//passing player selection value and styling icons
+function select(PlayerChoice) {
+  resetSelected();
+  
+  //Add 'selected' style & playeChoics
+  switch(PlayerChoice) {
+    case 'rock':
+      playerRock.classList.add('selected');
+      PlayerChoiceEl.textContent = ' ---Rock';
+      break;
+    case 'paper': 
+      playerPaper.classList.add('selected');
+      PlayerChoiceEl.textContent = ' ---Paper';
+      break;
+    case 'scissors': 
+      playerScissors.classList.add('selected');
+      PlayerChoiceEl.textContent = ' ---Scissors';
+      break;
+    case 'lizard': 
+      playerLizard.classList.add('selected');
+      PlayerChoiceEl.textContent = ' ---Lizard';
+      break;
+    case 'spock': 
+      playerSpock.classList.add('selected');
+      PlayerChoiceEl.textContent = ' ---Spock';
+      break;
+    default:
+      break;
+  }
+}
 
