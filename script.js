@@ -82,19 +82,28 @@ function displayComputerChoice() {
   }
 }
 
+//check result, increse score, upate resultText
+function updateScore(playerChoice) {
+  console.log(playerChoice.value, computerChoice)
+ if(playerChoice === computerChoice) {
+   resultText.textContent = "It's a tie";
+ }
+}
+
 //Call function to process turn
 function checkResult() {
   resetSelected();
   computerRandomChoice();
   displayComputerChoice();
+  updateScore(playerChoice);
 }
 
 //passing player selection value and styling icons
-function select(PlayerChoice) { 
-  checkResult();
+function select(playerChoice) { 
+  checkResult(playerChoice);
 
   //Add 'selected' style & playeChoics
-  switch(PlayerChoice) {
+  switch(playerChoice) {
     case 'rock':
       playerRock.classList.add('selected');
       PlayerChoiceEl.textContent = ' ---Rock';
