@@ -47,7 +47,7 @@ function computerRandomChoice() {
     computerChoice = 'paper';
   }else if (computerChoiceNumber <= 0.6) {
     computerChoice = 'scissors';
-  }else if (computerChoiceNumber <= 0.8){
+  }else if (computerChoiceNumber <= 0.8) {
     computerChoice ='lizard';
   }else{
     computerChoice = 'spock';
@@ -84,14 +84,24 @@ function displayComputerChoice() {
 
 //check result, increse score, upate resultText
 function updateScore(playerChoice) {
-  console.log(playerChoice.value, computerChoice)
- if(playerChoice === computerChoice) {
-   resultText.textContent = "It's a tie";
- }
+  if (playerChoice === computerChoice) {
+    resultText.textContent = "It's a tie🥱😪";
+  } else {
+    const choice = choices[playerChoice];
+    if(choice.defeats.indexOf(computerChoice) > -1) {
+      resultText.textContent = "You Win🏆🎉";
+      playerScoreNumber++;
+      playerScoreEl.textContent = playerScoreNumber;
+    } else {
+      resultText.textContent = "You Lost!😯😓";
+      computerScoreNumber++;
+      computerScore.textContent = computerScoreNumber;
+    }
+  }
 }
 
 //Call function to process turn
-function checkResult() {
+function checkResult(playerChoice) {
   resetSelected();
   computerRandomChoice();
   displayComputerChoice();
