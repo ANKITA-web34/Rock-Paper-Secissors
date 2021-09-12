@@ -1,3 +1,4 @@
+import { startConfetti, stopConfetti, removeConfetti } from './confetti.js';
 
 const playerScoreEl = document.getElementById('playerScore');
 const PlayerChoiceEl = document.getElementById('playerChoice');
@@ -36,6 +37,8 @@ function resetSelected() {
  allGameIcons.forEach((icon) => {
       icon.classList.remove('selected');
   });
+  stopConfetti();
+  removeConfetti();
 }
 
 //Reset Score  & playerchoice/COmputerChoice
@@ -49,6 +52,7 @@ function resetAll() {
   resultText.textContent = '';
   resetSelected();
 }
+window.resetAll = resetAll; //because module not know the globe scop(function calling in html)
 
 //Random Computer choice
 function computerRandomChoice() {
@@ -101,6 +105,7 @@ function updateScore(playerChoice) {
   } else {
     const choice = choices[playerChoice];
     if(choice.defeats.indexOf(computerChoice) > -1) {
+      startConfetti();
       resultText.textContent = "You Win🏆🎉";
       playerScoreNumber++;
       playerScoreEl.textContent = playerScoreNumber;
@@ -150,6 +155,8 @@ function select(playerChoice) {
       break;
   }
 }
+window.select = select;
 
 //on startup, set initial value!
-resetAll() ;
+resetAll();
+
